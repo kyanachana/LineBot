@@ -12,14 +12,17 @@ from linebot.models import (
 import os
 
 app = Flask(__name__)
-
 #環境変数取得
-YOUR_CHANNEL_ACCESS_TOKEN = os.environ["PnISwYL282dSpBJOXBy63JWe+QqyXJaBCmOy8Vjtlg1EA+YiLAqGpUWD+gIbfJR32L7gy0zXE599027mq0C8LoBOI2+feOUTaWrxC/F1J/e3JhPIgcWQb8Czzpwa3OVrU5NVj8EELrBUeGibpANjNAdB04t89/1O/w1cDnyilFU="]
-YOUR_CHANNEL_SECRET = os.environ["eca85002b52c06379fc7085fb884a10e"]
+YOUR_CHANNEL_ACCESS_TOKEN = os.environ["YOUR_CHANNEL_ACCESS_TOKEN"]
+YOUR_CHANNEL_SECRET = os.environ["YOUR_CHANNEL_SECRET"]
 
 line_bot_api = LineBotApi(YOUR_CHANNEL_ACCESS_TOKEN)
 handler = WebhookHandler(YOUR_CHANNEL_SECRET)
 
+@app.route("/")
+def hello_world():
+    return "hello world!"
+    
 @app.route("/callback", methods=['POST'])
 def callback():
     # get X-Line-Signature header value
